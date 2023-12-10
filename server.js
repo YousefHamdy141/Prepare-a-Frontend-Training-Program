@@ -9,15 +9,18 @@ app.get("/", (req, res) => {
 });
 
 app.get("/todo", (req, res) => {
-  if (todos == 0) {
-    res.status(401).send("No List founded");
-    return;
-  }
   res.send(todos);
 });
 
 app.post("/todo", (req, res) => {
-  console.log(req.body);
+  const list = req.body;
+
+  const findUser = todos.find((x) => x.id == list.id);
+  if (findUser) {
+    res.status(400).send("already exists!");
+    return;
+  }
+  todos.push(list);
   res.send("created!");
 });
 
