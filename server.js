@@ -1,12 +1,24 @@
 const express = require("express");
 const app = express();
+app.use(express.json());
+
+const todos = [];
 
 app.get("/", (req, res) => {
-  res.send("welcome");
+  res.send("Home");
 });
 
 app.get("/todo", (req, res) => {
-  res.send("helloooo world!");
+  if (todos == 0) {
+    res.status(401).send("No List founded");
+    return;
+  }
+  res.send(todos);
+});
+
+app.post("/todo", (req, res) => {
+  console.log(req.body);
+  res.send("created!");
 });
 
 app.listen(3000, () => {
