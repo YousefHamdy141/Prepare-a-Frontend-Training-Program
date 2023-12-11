@@ -2,6 +2,14 @@
   box-sizing: border-box;
 }
 
+body {
+  font-family: cursive !important;
+}
+
+body ::placeholder {
+  font-family: cursive !important;
+}
+
 $color_1: #fff;
 $color_2: white;
 $color_3: #555;

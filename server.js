@@ -2,30 +2,31 @@ const express = require("express");
 const app = express();
 app.use(express.json());
 
-const todos = [];
+let todos = [];
 
 app.get("/", (req, res) => {
   res.send("Home");
 });
 
-app.get("/todo", (req, res) => {
+app.get("/todos", (req, res) => {
   res.send(todos);
+  const tryFetch = { myString: "I am working fetch" };
+  res.json(tryFetch);
 });
 
 //endPoint (Post)
-app.post("/todo", (req, res) => {
-  const list = req.body;
-  const findUser = todos.find((x) => x.id == list.id);
-  if (findUser) {
-    res.status(400).send("already exists!");
-    return;
-  }
-  todos.push(list);
-  res.send("created!");
+app.post("/todos", (req, res) => {
+  todos.push(req.body);
+
+  todos.forEach((item, index) => {
+    item.id = index;
+  });
+
+  res.send(todos);
 });
 
 //endPoint (Delete)
-app.delete("/todo/:id", (req, res) => {
+app.delete("/todos/:id", (req, res) => {
   const { id } = req.params;
   const findUserIndex = todos.findIndex((x) => x.id == id);
   if (findUserIndex == -1) {
