@@ -1,3 +1,4 @@
+let todos = [];
 // Example POST method implementation:
 async function postData(url = "", data = {}) {
   // Default options are marked with *
@@ -17,12 +18,6 @@ async function postData(url = "", data = {}) {
   return response.json();
 }
 
-postData("http://localhost:3000/todos", { title: "test 1st todo" }).then(
-  (data) => {
-    console.log(data);
-  }
-);
-
 // Example GET method implementation:
 async function getData(url = "") {
   // Default options are marked with *
@@ -31,5 +26,57 @@ async function getData(url = "") {
 }
 
 getData("http://localhost:3000/todos").then((data) => {
+  console.warn("gettng data here");
   console.log(data);
+
+  todos = data;
+  let list = document.getElementById("myList");
+
+  todos.forEach((item, index) => {
+    let li = document.createElement("li");
+    li.innerHTML =
+      '<span class="close"  onclick="deleteTodo(' +
+      item.id +
+      ')">x</span>' +
+      " " +
+      item.title;
+    list.append(li);
+  });
 });
+
+function addTodo() {
+  let todoTitle = document.getElementById("todoTitle").value;
+  let addedTodo = {
+    title: todoTitle,
+  };
+  postData("http://localhost:3000/todos", addedTodo).then(
+    (data) => {
+      addedTodo.id = todos.length;
+      console.log(data);
+
+      document.getElementById("todoTitle").value = "";
+      debugger;
+      let list = document.getElementById("myList");
+      let li = document.createElement("li");
+      li.innerHTML =
+        '<span class="close"  onclick="deleteTodo(' +
+        addedTodo.id +
+        ')">x</span>' +
+        " " +
+        todoTitle;
+      list.append(li);
+      todos.push({
+        title: todoTitle,
+        id: addedTodo.id,
+      });
+      console.log(todos);
+    },
+    (err) => {
+      alert("couldnt create");
+    }
+  );
+}
+
+function deleteTodo(id) {
+  alert(id);
+}
