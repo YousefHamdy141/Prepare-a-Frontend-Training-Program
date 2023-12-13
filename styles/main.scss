@@ -72,12 +72,6 @@ li.checked {
   padding: 30px 40px;
   color: $color_2;
   text-align: center;
-
-  :after {
-    content: "";
-    display: table;
-    clear: both;
-  }
 }
 
 input {
@@ -93,7 +87,7 @@ input {
   color: $color_3;
   float: right;
   text-align: center;
-  font-size: 20px;
+  font-size: 15px;
   cursor: pointer;
   transition: 0.3s;
 

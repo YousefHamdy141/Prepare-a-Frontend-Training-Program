@@ -102,4 +102,14 @@ input {
   color: white;
 }
 
+.edit {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  padding: 12px 16px 12px 16px;
+}
+.edit :hover {
+  background-color: #f44336;
+  color: white;
+}
 /*# sourceMappingURL=main.css.map */

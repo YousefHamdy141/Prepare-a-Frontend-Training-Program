@@ -26,20 +26,19 @@ async function getData(url = "") {
 }
 
 getData("http://localhost:3000/todos").then((data) => {
-  console.warn("gettng data here");
   console.log(data);
+
+  //////////////////////////////////////////////////////
 
   todos = data;
   let list = document.getElementById("myList");
 
   todos.forEach((item, index) => {
     let li = document.createElement("li");
-    li.innerHTML =
-      '<span class="close"  onclick="deleteTodo(' +
-      item.id +
-      ')">x</span>' +
-      " " +
-      item.title;
+
+    li.id = index;
+
+    li.innerHTML = '<span class="close"> x </span>' + " " + todoTitle;
     list.append(li);
   });
 });
@@ -54,16 +53,10 @@ function addTodo() {
       addedTodo.id = todos.length;
       console.log(data);
 
-      document.getElementById("todoTitle").value = "";
-      debugger;
+      // document.getElementById("todoTitle").value = "";
       let list = document.getElementById("myList");
       let li = document.createElement("li");
-      li.innerHTML =
-        '<span class="close"  onclick="deleteTodo(' +
-        addedTodo.id +
-        ')">x</span>' +
-        " " +
-        todoTitle;
+      li.innerHTML = '<span class="close"> x </span>' + " " + todoTitle;
       list.append(li);
       todos.push({
         title: todoTitle,
@@ -72,11 +65,17 @@ function addTodo() {
       console.log(todos);
     },
     (err) => {
-      alert("couldnt create");
+      alert("couldn't create");
     }
   );
 }
+// select todo item
+// remove select item
 
-function deleteTodo(id) {
-  alert(id);
-}
+const container = document.getElementById("myList");
+
+container.addEventListener("click", (eo) => {
+  if ((eo.target.className = "close")) {
+    eo.target.parentElement.remove();
+  }
+});
