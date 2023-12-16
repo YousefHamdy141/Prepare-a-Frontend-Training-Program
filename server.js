@@ -31,23 +31,27 @@ app.delete("/todos/:id", (req, res) => {
   const { id } = req.params;
   const findUserIndex = todos.findIndex((x) => x.id == id);
   if (findUserIndex == -1) {
-    res.send("Not found");
+    res.send({
+      status: "Not found",
+    });
     return;
   }
   todos.splice(findUserIndex, 1);
-  res.send("deleted");
+  res.send({
+    status: "deleted",
+  });
 });
 
-// app.put("/todos", (req, res) => {
-//   let todo = getTodoById(req.body.todo.id);
-//   if (todo) {
-//     editTodo(req.body.todo.id, req.body.todo);
-//     res.send("ok");
-//   } else {
-//     res.status(400).send("record not found");
-//   }
-// });
+app.put("/todos", (req, res) => {
+  let todo = getTodoById(req.body.todo.id);
+  if (todo) {
+    editTodo(req.body.todo.id, req.body.todo);
+    res.send("ok");
+  } else {
+    res.status(400).send("record not found");
+  }
+});
 
 app.listen(3000, () => {
-  console.log("server run on port 3000");
+  console.log(" server run on port 3000");
 });
