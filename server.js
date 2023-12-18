@@ -42,13 +42,29 @@ app.delete("/todos/:id", (req, res) => {
   });
 });
 
+function editTodo(todo) {
+  let foundTodo = todos.find((item) => {
+    return item.id == todo.id;
+  });
+  todos.forEach((elm) => {
+    if (elm.id == foundTodo.id) {
+      elm.title = todo.title;
+    }
+  });
+}
+
 app.put("/todos", (req, res) => {
-  let todo = getTodoById(req.body.todo.id);
+  let todo = req.body;
   if (todo) {
-    editTodo(req.body.todo.id, req.body.todo);
-    res.send("ok");
+    editTodo(todo);
+    res.send({
+      status: "updated",
+      todos: todos,
+    });
   } else {
-    res.status(400).send("record not found");
+    res.status(400).send({
+      status: "faild",
+    });
   }
 });
 

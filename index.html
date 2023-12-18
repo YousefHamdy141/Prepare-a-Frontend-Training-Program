@@ -1,23 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <link rel="stylesheet" href="styles/main.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <link rel="stylesheet" href="styles/main.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Todo List</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="header">
-        <h2>My To Do List</h2>
-        <input type="text" class="myInput" id="todoTitle" placeholder="Title...">
-        <span onclick="addTodo()" class="addBtn" id="add"> Add </span>
+      <h2>My To Do List</h2>
+      <input
+        type="text"
+        class="myInput"
+        id="todoTitle"
+        placeholder="Title..."
+      />
+      <span onclick="addTodo()" class="addBtn" id="add"> Add </span>
     </div>
-    
-    <ul class="myUL" id="myList">
-        <!-- <li><span class="close">x</span>Hit the gym</li> -->
-    </ul>
+
+    <ul class="myUL" id="myList"></ul>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Update Todo</p>
+        <div>
+          <input
+            type="text"
+            class="myInput"
+            id="editTitle"
+            placeholder="Title..."
+          />
+          <span class="addBtn" id="edit" onclick="updateTodo()"> Update </span>
+        </div>
+      </div>
+    </div>
 
     <script src="todos.js"></script>
-
-</body>
+  </body>
 </html>
