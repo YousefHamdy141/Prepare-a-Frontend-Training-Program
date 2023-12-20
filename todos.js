@@ -189,6 +189,35 @@ function updateTodo() {
     }
   );
 }
+/// Trigger Button Click on Enter (ADD) ///
+let input = document.getElementById("todoTitle");
+input.addEventListener("keypress", function (event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    document.getElementById("add").click();
+  }
+});
+
+/// Trigger Button Click on Enter (EDIT) ///
+let edit = document.getElementById("editTitle");
+edit.addEventListener("keypress", function (event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    document.getElementById("edit").click();
+  }
+});
+
+/// Clear Value From Input///
+const btn = document.getElementById("add");
+btn.addEventListener("click", function handleClick(event) {
+  // if you are submitting a form (prevents page reload)
+  event.preventDefault();
+
+  const input = document.getElementById("todoTitle");
+
+  // clear input field
+  input.value = "";
+});
 
 // create button
 // onclick => select parent
