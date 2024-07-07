@@ -1,0 +1,92 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: cursive !important;
+}
+
+body ::placeholder {
+  font-family: cursive !important;
+}
+
+$color_1: #fff;
+$color_2: white;
+$color_3: #555;
+$background-color_1: #f44336;
+$background-color_2: #bbb;
+$border-color_1: #fff;
+
+.myUL {
+  margin: 0;
+  padding: 0;
+
+  li {
+    cursor: pointer;
+    position: relative;
+    padding: 12px 8px 12px 40px;
+    background: #eee;
+    font-size: 18px;
+    transition: 0.2s;
+
+    &:nth-child(odd) {
+      background: #f9f9f9;
+    }
+
+    &:hover {
+      background: #ddd;
+    }
+  }
+}
+
+.close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 12px 16px;
+  &:hover {
+    background-color: $background-color_1;
+    color: $color_1;
+  }
+}
+
+.header {
+  background-color: $background-color_1;
+  padding: 30px 40px;
+  color: $color_2;
+  text-align: center;
+}
+
+input {
+  width: 75%;
+  padding: 10px;
+  font-size: 20px;
+}
+
+.addBtn {
+  padding: 12.5px;
+  width: 25%;
+  background: #d9d9d9;
+  color: $color_3;
+  float: right;
+  text-align: center;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    background-color: $background-color_2;
+  }
+}
+
+.update {
+  position: absolute;
+  right: 90px;
+  top: 0;
+  padding: 12px 16px;
+
+  &:hover {
+    background-color: $background-color_1;
+    color: $color_2;
+  }
+}
